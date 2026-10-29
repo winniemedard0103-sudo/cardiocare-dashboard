@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101c2d">
+  <title>CardioCare | Cardiovascular Monitoring Prototype</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#overview"><span class="brand-mark">♥</span><span>Cardio<span class="brand-light">Care</span><small>CARE INTELLIGENCE</small></span></a>
+    <div class="side-label">WORKSPACE</div>
+    <nav class="side-nav">
+      <a class="nav-item active" href="#overview">▦ <span>Overview</span></a>
+      <a class="nav-item" href="#monitor">⌁ <span>ECG Monitor</span></a>
+      <a class="nav-item" href="#history">▥ <span>Patient History</span></a>
+      <a class="nav-item" href="#alerts">⚑ <span>Alert Simulator</span><em id="navAlertCount">2</em></a>
+      <a class="nav-item" href="#assessment">♡ <span>Patient Assessment</span></a>
+    </nav>
+    <div class="side-label">DEMO PATIENT</div>
+    <div class="patient-mini"><div class="avatar">JD</div><div><strong>Jordan Davis</strong><small>Demo patient · CC-1048</small></div></div>
+    <div class="sidebar-bottom">
+      <div class="demo-note"><span class="pulse-dot"></span><div><strong>SIMULATION ONLY</strong><p>No medical device is connected. Values are fictional.</p></div></div>
+      <a class="nav-item" href="#disclaimer">ⓘ <span>Safety & limitations</span></a>
+    </div>
+  </aside>
+
+  <main class="main-content" id="overview">
+    <header class="topbar"><button class="menu-button" id="menuButton" aria-label="Open navigation">☰</button><div class="crumb">Monitoring <span>/</span> <strong>Patient overview</strong></div><div class="top-actions"><span class="connection-pill"><i></i> SIMULATION ACTIVE</span><div class="top-avatar">JD</div></div></header>
+    <section class="page-heading"><div><p class="eyebrow">CARDIOVASCULAR CARE</p><h1>Patient monitoring</h1><p class="subheading">Explore sample cardiac signals, vital signs, alerts, and assessment data.</p></div><div class="heading-meta"><span class="status-badge"><i></i> Demo session running</span><span class="date-label" id="currentDate">—</span></div></section>
+
+    <section class="patient-banner"><div class="patient-info"><div class="avatar large">JD</div><div><div class="patient-name">Jordan Davis <span class="tag">FICTIONAL PROFILE</span></div><p>Patient ID: CC-1048 <span>•</span> Adult profile <span>•</span> Sample record</p></div></div><div class="patient-details"><div><small>CARE UNIT</small><strong>Cardiac observation</strong></div><div><small>LAST DEMO UPDATE</small><strong id="syncTime">Just now</strong></div><button class="outline-button" id="refreshButton">↻ Refresh sample data</button></div></section>
+
+    <section class="section-heading"><div><h2>Vital signs</h2><p>Fictional values for interface demonstration</p></div><span class="small-label"><span class="live-dot"></span> SIMULATED FEED</span></section>
+    <section class="vitals-grid">
+      <article class="vital-card heart-card"><div class="vital-top"><span>Heart rate</span><span class="vital-icon">♥</span></div><div class="vital-value"><strong id="heartRate">72</strong><span>bpm</span></div><div class="vital-status"><span id="heartStatus" class="status-normal">● Sample reference</span><span class="vital-range">Demo only</span></div><div class="mini-chart red-chart"><svg viewBox="0 0 300 42" preserveAspectRatio="none"><path d="M0 22 L20 22 L28 19 L35 26 L43 22 L56 22 L65 6 L73 36 L82 15 L90 22 L118 22 L126 19 L133 26 L141 22 L154 22 L163 6 L171 36 L180 15 L188 22 L216 22 L224 19 L231 26 L239 22 L252 22 L261 6 L269 36 L278 15 L286 22 L300 22"/></svg></div></article>
+      <article class="vital-card"><div class="vital-top"><span>Blood pressure</span><span class="vital-icon purple">↕</span></div><div class="vital-value"><strong id="bloodPressure">118/76</strong><span>mmHg</span></div><div class="vital-status"><span class="status-normal">● Sample value</span><span class="vital-range">Demo only</span></div><div class="range-bar"><span style="left:42%"></span></div></article>
+      <article class="vital-card"><div class="vital-top"><span>Oxygen saturation</span><span class="vital-icon blue">◉</span></div><div class="vital-value"><strong id="oxygen">98</strong><span>% SpO₂</span></div><div class="vital-status"><span class="status-normal">● Sample value</span><span class="vital-range">Demo only</span></div><div class="range-bar blue-bar"><span style="left:78%"></span></div></article>
+      <article class="vital-card"><div class="vital-top"><span>Respiratory rate</span><span class="vital-icon green">≋</span></div><div class="vital-value"><strong id="respRate">16</strong><span>breaths/min</span></div><div class="vital-status"><span class="status-normal">● Sample value</span><span class="vital-range">Demo only</span></div><div class="range-bar green-bar"><span style="left:48%"></span></div></article>
+    </section>
+
+    <section class="content-grid" id="monitor">
+      <article class="panel ecg-panel"><div class="panel-heading"><div><h2>ECG rhythm simulator</h2><p>Illustrative waveform patterns — not measured ECG data</p></div><span class="monitor-badge"><i></i> SIMULATION</span></div>
+        <div class="ecg-controls"><label for="rhythmSelect">Choose demo pattern</label><select id="rhythmSelect"><option value="regular">Regular rhythm pattern</option><option value="fast">Faster rhythm pattern</option><option value="irregular">Irregular-looking pattern</option><option value="flat">Flat signal / lead-off example</option></select><button class="primary-button" id="applyRhythm">Apply pattern</button></div>
+        <div class="ecg-meta"><div><small>DISPLAYED RATE</small><strong><span id="ecgRate">72</span> <small>bpm</small></strong></div><div><small>SELECTED PATTERN</small><strong id="rhythmLabel">Regular rhythm pattern</strong></div><div><small>DATA SOURCE</small><strong>Generated sample</strong></div></div>
+        <div class="ecg-screen"><div class="ecg-grid"></div><svg class="ecg-svg" viewBox="0 0 900 180" preserveAspectRatio="none" aria-label="Simulated ECG-style waveform"><path id="ecgPath" d="M0 90 L60 90 L76 84 L91 98 L108 90 L155 90 L174 90 L190 42 L208 142 L227 70 L244 90 L300 90 L360 90 L376 84 L391 98 L408 90 L455 90 L474 90 L490 42 L508 142 L527 70 L544 90 L600 90 L660 90 L676 84 L691 98 L708 90 L755 90 L774 90 L790 42 L808 142 L827 70 L844 90 L900 90"/></svg><div class="ecg-time"><span>Illustrative trace</span><span>Not for diagnosis</span><span id="signalStatus">Signal demo</span></div></div><div class="panel-foot"><span><i class="legend-line"></i> Generated visual pattern</span><span>Not a clinical ECG.</span></div>
+      </article>
+      <article class="panel alerts-panel" id="alerts"><div class="panel-heading"><div><h2>Alert simulator</h2><p>Explore interface responses to selected values</p></div><span class="alert-count" id="alertCount">2</span></div>
+        <div class="alert-intro">Choose a fictional scenario to populate the alert list. These rules are for demonstrating UI behavior only and are not clinically validated.</div>
+        <div class="scenario-buttons"><button class="scenario-button selected" data-scenario="baseline">Baseline demo</button><button class="scenario-button" data-scenario="high">High-rate example</button><button class="scenario-button" data-scenario="lowoxygen">Low oxygen example</button><button class="scenario-button" data-scenario="lead">Signal unavailable</button></div>
+        <div id="alertList" class="alert-list" aria-live="polite"></div><button class="text-button" id="acknowledgeButton">Acknowledge displayed alerts <span>→</span></button><p class="ack-message" id="ackMessage" aria-live="polite"></p>
+      </article>
+    </section>
+
+    <section class="content-grid lower-grid" id="history">
+      <article class="panel trends-panel"><div class="panel-heading"><div><h2>Patient history & trend</h2><p>Illustrative sample points from a fictional session</p></div><select id="trendSelect" class="compact-select" aria-label="Select trend"><option value="heart">Heart rate</option><option value="oxygen">Oxygen saturation</option><option value="resp">Respiratory rate</option></select></div>
+        <div class="trend-summary"><div><small>SELECTED TREND</small><strong id="trendMetric">Heart rate</strong></div><div><small>SAMPLE POINTS</small><strong>6 records</strong></div><div><small>TIME WINDOW</small><strong>30 minutes</strong></div></div>
+        <div class="trend-chart"><div class="y-labels" id="yLabels"><span>100</span><span>80</span><span>60</span><span>40</span></div><svg viewBox="0 0 650 170" preserveAspectRatio="none" aria-label="Illustrative patient history trend chart"><path class="chart-grid" d="M0 20 H650 M0 62 H650 M0 104 H650 M0 146 H650"/><path id="trendArea" class="trend-area" d="M0 90 L40 82 L80 88 L120 66 L160 74 L200 54 L240 65 L280 82 L320 70 L360 48 L400 60 L440 78 L480 70 L520 56 L560 67 L600 60 L650 64 L650 160 L0 160 Z"/><path id="trendLine" class="trend-line" d="M0 90 L40 82 L80 88 L120 66 L160 74 L200 54 L240 65 L280 82 L320 70 L360 48 L400 60 L440 78 L480 70 L520 56 L560 67 L600 60 L650 64"/></svg><div class="x-labels"><span>−30 min</span><span>−20 min</span><span>−10 min</span><span>Now</span></div></div><div class="history-table-wrap"><table><thead><tr><th>Time</th><th>Heart rate</th><th>SpO₂</th><th>Resp. rate</th><th>Source</th></tr></thead><tbody id="historyRows"></tbody></table></div><p class="chart-note">All rows and chart points are generated demo data, not patient observations.</p>
+      </article>
+      <article class="panel assessment-panel" id="assessment"><div class="panel-heading"><div><h2>Patient assessment</h2><p>Educational intake form prototype</p></div><span class="note-icon">✎</span></div>
+        <form id="assessmentForm"><label for="symptoms">Symptoms reported in this fictional scenario</label><select id="symptoms"><option value="">Choose an option</option><option>No symptoms reported</option><option>Palpitations</option><option>Shortness of breath</option><option>Chest discomfort</option><option>Dizziness or faintness</option></select>
+          <label for="duration">Duration</label><select id="duration"><option value="">Choose duration</option><option>Just started</option><option>Less than one hour</option><option>Several hours</option><option>Recurring over days</option></select>
+          <label for="historyInput">Relevant history (optional)</label><textarea id="historyInput" placeholder="Enter fictional history for your demo…"></textarea>
+          <button type="submit" class="primary-button full-button">Generate educational summary</button>
+        </form><div id="assessmentResult" class="assessment-result" aria-live="polite"></div>
+        <p class="form-note">This form does not assess real medical risk. It does not diagnose or determine treatment.</p>
+      </article>
+    </section>
+
+    <section class="disclaimer" id="disclaimer"><div class="disclaimer-icon">ⓘ</div><div><strong>Educational prototype — not for clinical use</strong><p>All patient details, vital signs, charts, alerts, ECG-style patterns, and assessment outputs are simulated. This website does not connect to sensors, monitor a real heartbeat, diagnose conditions, or replace professional medical care. Its sample alert scenarios are not clinically validated. A real clinical system requires validated devices, qualified clinical oversight, secure data handling, and applicable regulatory approval. If someone has severe chest pain, difficulty breathing, faints, or appears critically unwell, seek emergency medical help.</p></div></section>
+    <footer>CardioCare Prototype <span>•</span> Student portfolio demonstration <span>•</span> Not a medical device</footer>
+  </main>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
